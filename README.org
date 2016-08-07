@@ -1,0 +1,59 @@
+* What is it?
+
+Docker image to run the ECS AWS CLI anywhere
+
+* How do I use it?
+
+** Build the docker image
+
+#+BEGIN_SRC sh
+docker built -t ecscli .
+#+END_SRC
+
+#+RESULTS:
+
+** Run it
+
+This will accept the same AWS ECS CLI parameters 
+[[http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_reference.html][AWS ECS CLI]]
+
+
+#+BEGIN_SRC sh :results output
+docker run ecscli
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+NAME:
+   ecs-cli - Command line interface for Amazon ECS
+
+USAGE:
+   ecs-cli [global options] command [command options] [arguments...]
+   
+VERSION:
+   0.4.1 (e27df48)
+   
+AUTHOR(S):
+   Amazon Web Services 
+   
+COMMANDS:
+   configure	Configures your AWS credentials, the AWS region to use, and the ECS cluster name to use with the Amazon ECS CLI. The resulting configuration is stored in the ~/.ecs/config file.
+   up		Creates the ECS cluster (if it does not already exist) and the AWS resources required to set up the cluster.
+   down		Deletes the CloudFormation stack that was created by ecs-cli up and the associated resources. The --force option is required.
+   scale	Modifies the number of container instances in your cluster. This command changes the desired and maximum instance count in the Auto Scaling group created by the ecs-cli up command. You can use this command to scale up (increase the number of instances) or scale down (decrease the number of instances) your cluster.
+   ps		Lists all of the running containers in your ECS cluster
+   license	Prints the LICENSE files for the ECS CLI and its dependencies.
+   compose	Executes docker-compose-style commands on an ECS cluster.
+   help, h	Shows a list of commands or help for one command
+   
+GLOBAL OPTIONS:
+   --help, -h		show help
+   --version, -v	print the version
+   
+#+end_example
+
+#+BEGIN_SRC sh :output no
+docker run ecscli ps
+#+END_SRC
+
+
